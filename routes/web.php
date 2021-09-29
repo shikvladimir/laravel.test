@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +19,14 @@ Route::get('/catalog/{category}', [CatalogController::class, 'category'])
 
 Route::get('/catalog', [CatalogController::class, 'index'])
     ->name('catalog');
+
+Route::prefix('adm')->name('admin.')->group(function (){
+    Route::view('adm', 'admin.dashboard');
+    Route::resources([
+        'categories' => CategoryController::class,
+        'products' => ProductController::class
+    ]);
+});
 
 
 
