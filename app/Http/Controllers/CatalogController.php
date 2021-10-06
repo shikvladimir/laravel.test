@@ -13,6 +13,7 @@ class CatalogController extends Controller
     }
 
     public function category(Request $request, Category $category){
+
         $categories = Category::all();
         $products = Product::query()
             ->paginate(9);

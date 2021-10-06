@@ -5,13 +5,13 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RandProductsController;
 use App\Http\Middleware\CheckAge;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', [HomeController::class, 'index'])
-//    ->middleware([CheckAge::class,])
     ->name('main_page');
 
 Route::get('register',[LoginController::class, 'register'])
@@ -34,6 +34,9 @@ Route::get('/catalog/{category}', [CatalogController::class, 'category'])
 
 Route::get('/catalog', [CatalogController::class, 'index'])
     ->name('catalog');
+
+Route::get('/randProducts',[RandProductsController::class, 'product'])
+    ->name('randProducts');
 
 Route::prefix('adm')->name('admin.')
     ->middleware(CheckAge::class)
