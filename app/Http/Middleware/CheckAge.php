@@ -17,7 +17,7 @@ class CheckAge
      */
     public function handle(Request $request, Closure $next)
     {
-        Auth::loginUsingId('1');
+
         if(!Auth::user()){
 
             abort(403);
