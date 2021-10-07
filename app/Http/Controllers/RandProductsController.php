@@ -24,7 +24,6 @@ class RandProductsController extends Controller
                 $productItem[] = $randProductsId;
 
         }
-dump($randProducts);
         return view('randProducts', compact('productItem'));
     }
 

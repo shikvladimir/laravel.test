@@ -19,12 +19,14 @@ class ChackTimeCreatedUser
     public function handle(Request $request, Closure $next)
     {
         $user = Auth::user();
-        $time = $user['created_at'];
-        $current = Carbon::now();
-        if($current->diffInDays($time)>3){
+        $nowDate = Carbon::today();
+        $timeRegistration = $user['created_at'];
+        $activityTime = $nowDate ->subDays(3);
+
+        if($timeRegistration > $activityTime){
             return $next($request) ;
         }else{
-            return 'Прошло больше 3 дней!';
+            abort(404);
         }
     }
 
