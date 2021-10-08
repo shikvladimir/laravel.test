@@ -5,10 +5,24 @@
         <div class="container-fluid">
             <form action="{{route('admin.products.store')}}" method="post">
                 @csrf
-                <input type="text" name="name">
-                <input type="text" name="price">
-                <input type="text" name="active">
-                <button type="submit">Save</button>
+                <div class="form-group">
+                    <label>Название</label>
+                    <input class="form-control" type="text" name="name">
+                </div>
+                <div class="form-group">
+                    <label>Цена</label>
+                    <input class="form-control" type="text" name="price">
+                </div>
+                <div class="form-group">
+                    <label>Active</label>
+                    <input class="form-control" type="text" name="active">
+                </div>
+                <div class="form-group">
+                    <label>Photo</label>
+                    <input class="form-control" type="file" name="photo">
+                </div>
+
+                <button class="btn btn-info" type="submit">Save</button>
             </form>
 
         </div>

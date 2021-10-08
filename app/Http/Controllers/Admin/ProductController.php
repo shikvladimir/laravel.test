@@ -42,6 +42,7 @@ class ProductController extends Controller
         $product->save();
         return response()
             ->redirectToRoute('admin.products.index');
+        $image = $request->file('photo');
     }
 
     /**
