@@ -3,10 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        @dump($errors->all())
-        <div class="col-md-12">
+        <div class="col-md-6">
             <form action="{{route('checkLogin')}}" method="post">
                 @csrf
+                <lable>
+                    <h1>Авторизация пользователя</h1>
+                </lable>
                 <div class="form-group">
                     <label>email</label>
                     <input type="email" class="form-control" name="email">

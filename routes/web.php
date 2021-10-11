@@ -7,13 +7,18 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RandProductsController;
 use App\Http\Middleware\ChackTimeCreatedUser;
-use App\Http\Middleware\CheckAge;
+use App\Http\Middleware\CheckPassword;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('main_page');
+
+/////////////
+Route::get('search', [HomeController::class, 'search'])
+    ->name('search');
+////////////
 
 Route::get('register',[LoginController::class, 'register'])
     ->name('register');
@@ -41,7 +46,7 @@ Route::get('/randProducts',[RandProductsController::class, 'product'])
     ->middleware([ChackTimeCreatedUser::class]);
 
 Route::prefix('adm')->name('admin.')
-    ->middleware(CheckAge::class)
+    ->middleware(CheckPassword::class)
     ->group(function (){
     Route::view('adm', 'admin.dashboard');
     Route::resources([

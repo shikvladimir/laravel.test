@@ -45,13 +45,14 @@
     <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+                <li><a href="#"><i class="fa fa-phone"></i> +375-44-711-57-61</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> vnstore2018@email.com</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> Belarus, Minsk</a></li>
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
                 <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                <li><a href="{{route('login')}}"><i class="fa fa-user-o"></i> Login</a></li>
             </ul>
         </div>
     </div>
@@ -76,14 +77,16 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form>
+                        <form method="get" action="{{route('search')}}">
                             <select class="input-select">
+
                                 <option value="0">All Categories</option>
                                 <option value="1">Category 01</option>
                                 <option value="1">Category 02</option>
+
                             </select>
-                            <input class="input" placeholder="Search here">
-                            <button class="search-btn">Search</button>
+                            <input class="input" type="search" name="search" required placeholder="Поиск по айту">
+                            <button type="submit" class="search-btn">Search</button>
                         </form>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>Bordered with Striped Rows</h2>
+                    <h2>Панель управления</h2>
                     <a href="{{route('admin.products.create')}}" class="btn btn-info">Добавить товар</a>
                     <div class="table-responsive">
 
@@ -16,6 +16,7 @@
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Active</th>
+                                <th>Update</th>
 
                             </tr>
                             </thead>
@@ -26,6 +27,7 @@
                                 <td>{{$product->price}}</td>
                                 <td>{{$product->active}}</td>
                                 <td><a href="{{route('admin.products.edit',['product' => $product->id])}}">Редактировать</a></td>
+
                             </tr>
                             @endforeach
 
@@ -33,10 +35,8 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            <!-- /.row -->
 
-        <!-- /.container-fluid -->
-    </div>>
+    </div>
     </div>
 @endsection
+

@@ -1,9 +1,11 @@
 @extends('layouts.admin')
 @section('content')
     <div id="page-wrapper">
-
+        <div class="div">
+            <h1>Добавление товара</h1>
+        </div>
         <div class="container-fluid">
-            <form action="{{route('admin.products.store')}}" method="post">
+            <form action="{{route('admin.products.store')}}" enctype="multipart/form-data" method="post">
                 @csrf
                 <div class="form-group">
                     <label>Название</label>
@@ -26,5 +28,5 @@
             </form>
 
         </div>
-    </div>>
+    </div>
 @endsection

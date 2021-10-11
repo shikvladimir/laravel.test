@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -32,23 +34,35 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $product = new Product();
-        $product->fill($request->all());
-        $product->save();
+//        $product = new Product();
+//        $product->fill($request->all());
+//        $product->save();
+
+        $product = $request->all();
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $photo = Storage::disk('public')
+                ->putFileAs('',$file,$file->getClientOriginalName());
+            $product['photo']=$photo;
+
+        }
+        Product::create($product);
+
+
         return response()
             ->redirectToRoute('admin.products.index');
-        $image = $request->file('photo');
+
+
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
@@ -59,7 +73,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
@@ -70,8 +84,8 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Product $product)
@@ -85,11 +99,22 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function checkLogin(Request $request)
     {
-        //
+        Auth::attempt($request->only(['email', 'password']));
     }
+
+    public function destroy($id)
+    {
+
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return response()
+            ->redirectToRoute('admin.products.index');
+    }
+
 }

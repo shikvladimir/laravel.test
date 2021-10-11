@@ -18,6 +18,18 @@ class ChackTimeCreatedUser
      */
     public function handle(Request $request, Closure $next)
     {
+//        Более простой метод проверки
+//        $user = Auth::user();
+//        if(!Auth::user()){
+//            abort(403);
+//        }
+//        $today = Carbon::now();
+//        $create = Carbon::parse($user->created_at);
+//        if($today->diffInDays($create)>3){
+//            abort(404);
+//        }
+
+
         $user = Auth::user();
         $nowDate = Carbon::today();
         $timeRegistration = $user['created_at'];

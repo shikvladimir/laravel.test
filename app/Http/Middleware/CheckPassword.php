@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class CheckAge
+class CheckPassword
 {
     /**
      * Handle an incoming request.
@@ -17,7 +17,7 @@ class CheckAge
      */
     public function handle(Request $request, Closure $next)
     {
-        Auth::loginUsingId('1');
+
         if(!Auth::user()){
 
             abort(403);
