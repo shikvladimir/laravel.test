@@ -1,7 +1,7 @@
 @extends('layouts.shop')
 
 @section('content')
-@csrf
+
 @include('flash-message')
     <!-- BREADCRUMB -->
     <div id="breadcrumb" class="section">

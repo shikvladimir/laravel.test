@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -42,6 +43,12 @@ Route::get('/catalog', [CatalogController::class, 'index'])
 Route::get('/randProducts',[RandProductsController::class, 'product'])
     ->name('randProducts')
     ->middleware([ChackTimeCreatedUser::class]);
+
+Route::post('/add_to_cart', [CartController::class,'addToCart'] )
+    ->name('add_to_cart');
+
+Route::get('/cart',[CartController::class,'showCart'])
+    ->name('showCart');
 
 Route::prefix('adm')->name('admin.')
     ->middleware(CheckPassword::class)

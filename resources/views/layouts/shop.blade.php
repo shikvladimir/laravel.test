@@ -81,10 +81,11 @@
                 <div class="col-md-6">
                     <div class="header-search">
                         <form method="get" action="{{route('search')}}">
+                            @csrf
                             <select class="input-select">
                                 <option value="1">All Category</option>
                                     @foreach($categories as $item)
-                                    <option value="0">{{$item->name}}</option>
+                                    <option value="{{$item->id}}">{{$item->name}}</option>
                                     @endforeach
 
                             </select>

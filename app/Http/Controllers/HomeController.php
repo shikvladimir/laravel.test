@@ -12,30 +12,32 @@ use Illuminate\Support\Facades\Session;
 
 class HomeController
 {
-    public function index()
+    public function index(Request $request)
     {
         Auth::loginUsingId('1');
         Auth::logout();
 
+
         $categories = Category::all();
         return view('home.main', compact('categories'));
+
 
 
     }
 
     public function search(Request $request)
     {
+        $categories = Category::all();
         $search = $request->get('search');
         $products = Product::query()
             ->where('name', 'LIKE', '%' . $search . '%')
             ->orderBy('name')
             ->get();
-            if(file_exists($products)){
-                Session::flash('warning', 'Product not found!');
-                return view('search');
-            }else{
-                return view('search', compact('products'));
+            if($products->isEmpty()){
+                Session::flash('success', 'Product not found!');
             }
+                return view('search', compact('products', 'categories'));
+
     }
 
 }

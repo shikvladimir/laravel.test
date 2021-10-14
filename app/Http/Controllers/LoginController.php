@@ -12,23 +12,45 @@ use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
 
-    public function register(){
+    public function register()
+    {
         return view('auth.register');
     }
 
-    public function registration(UserRegistrationRequest $request){
+    public function registration(UserRegistrationRequest $request)
+    {
         $data = $request->all();
         $data['password'] = Hash::make($data['password']);
         User::create($data);
+dd($data);
+
         return redirect()->route('main_page');
+
     }
 
-    public function login(){
+    public function login()
+    {
         return view('auth.login');
 
     }
 
-    public function checkLogin(Request $request){
+    public function checkLogin(Request $request)
+    {
         Auth::attempt($request->only(['email', 'password']));
+
+
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $items = User::create($request->all());
+
+        return back()->with('success','Product successfully added.');
+    }
+
 }
