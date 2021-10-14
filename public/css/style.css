@@ -431,7 +431,8 @@ textarea.input {
 }
 
 .header-links li a:hover {
-  color: #D10024;
+  /*color: #D10024;*/
+    color: #D10024;
 }
 
 .header-links li i {

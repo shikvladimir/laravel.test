@@ -37,9 +37,11 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
 </head>
 <body>
 <!-- HEADER -->
+
 <header>
     <!-- TOP HEADER -->
     <div id="top-header">
@@ -53,6 +55,7 @@
                 <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
                 <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
                 <li><a href="{{route('login')}}"><i class="fa fa-user-o"></i> Login</a></li>
+                <li><a href="{{route('register')}}"><i class="fa fa-user-o"></i> Registration</a></li>
             </ul>
         </div>
     </div>
@@ -79,13 +82,13 @@
                     <div class="header-search">
                         <form method="get" action="{{route('search')}}">
                             <select class="input-select">
-
-                                <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                <option value="1">All Category</option>
+                                    @foreach($categories as $item)
+                                    <option value="0">{{$item->name}}</option>
+                                    @endforeach
 
                             </select>
-                            <input class="input" type="search" name="search" required placeholder="Поиск по айту">
+                            <input class="input" type="search" name="search" required placeholder="Поиск по сайту">
                             <button type="submit" class="search-btn">Search</button>
                         </form>
                     </div>
@@ -296,6 +299,10 @@
 <script src="{{asset('/js/nouislider.min.js')}}"></script>
 <script src="{{asset('/js/jquery.zoom.min.js')}}"></script>
 <script src="{{asset('/js/main.js')}}"></script>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="/js/app.js"></script>
 
 </body>
 </html>

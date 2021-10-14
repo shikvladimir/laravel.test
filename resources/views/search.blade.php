@@ -2,6 +2,7 @@
 
 @section('content')
 @csrf
+@include('flash-message')
     <!-- BREADCRUMB -->
     <div id="breadcrumb" class="section">
         <!-- container -->
@@ -206,6 +207,7 @@
                             </div>
                             <!-- /product -->
                         @endforeach
+
                     </div>
                     <!-- /store products -->
 

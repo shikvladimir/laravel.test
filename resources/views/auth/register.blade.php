@@ -3,10 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        @dump($errors->all())
         <div class="col-md-12">
             <form action="{{route('registration')}}" method="post">
                 @csrf
+                <lable>
+                    <h1>Регистрация пользователя</h1>
+                </lable>
                 <div class="form-group">
                     <label>name</label>
                     <input type="text" class="form-control" name="name">

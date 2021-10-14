@@ -15,10 +15,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])
     ->name('main_page');
 
-/////////////
 Route::get('search', [HomeController::class, 'search'])
     ->name('search');
-////////////
 
 Route::get('register',[LoginController::class, 'register'])
     ->name('register');

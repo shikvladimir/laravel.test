@@ -9,7 +9,13 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'title'];
+    protected $fillable = ['name', 'title','category_id'];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
 
 //    public function getRouteKeyName()
 //    {

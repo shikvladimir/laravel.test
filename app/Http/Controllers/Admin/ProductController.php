@@ -49,7 +49,6 @@ class ProductController extends Controller
             $photo = Storage::disk('public')
                 ->putFileAs('',$file,$file->getClientOriginalName());
             $product['photo']=$photo;
-
         }
         Product::create($product);
 

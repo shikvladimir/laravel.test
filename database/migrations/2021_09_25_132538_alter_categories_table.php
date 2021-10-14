@@ -15,6 +15,8 @@ class AlterCategoriesTable extends Migration
     {
         Schema::table('categories', function (Blueprint $table){
             $table->string('title');
+            $table->foreignId('category_id')
+                ->nullable();
         });
     }
 

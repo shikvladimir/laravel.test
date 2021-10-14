@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController
 {
@@ -15,7 +16,11 @@ class HomeController
     {
         Auth::loginUsingId('1');
         Auth::logout();
-        return view('home.main');
+
+        $categories = Category::all();
+        return view('home.main', compact('categories'));
+
+
     }
 
     public function search(Request $request)
@@ -25,8 +30,12 @@ class HomeController
             ->where('name', 'LIKE', '%' . $search . '%')
             ->orderBy('name')
             ->get();
-//           ->paginate(9);
-        return view('search', compact('products'));
+            if(file_exists($products)){
+                Session::flash('warning', 'Product not found!');
+                return view('search');
+            }else{
+                return view('search', compact('products'));
+            }
     }
 
 }
