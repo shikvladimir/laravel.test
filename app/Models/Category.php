@@ -13,11 +13,6 @@ class Category extends Model
 
     public function products()
     {
-        $categories = Category::find(1);
-        $products = $categories->products;
-        foreach ($products as $product){
-            echo $product->name;
-        }
 
 
         return $this->hasMany(Product::class);

@@ -174,7 +174,7 @@
 
                 <!-- STORE -->
                 <div id="store" class="col-md-9">
-                    <h1>{{ $category->title ?? 'Каталого товаров'}}</h1>
+                    <h1>{{ $category->title ?? 'Каталог товаров'}}</h1>
                     <!-- store top filter -->
                     <div class="store-filter clearfix">
                         <div class="store-sort">
@@ -212,7 +212,7 @@
                                         <img src="{{$product->pagePhoto}}" alt="photo">
                                     </div>
                                     <div class="product-body">
-                                        <p class="product-category">{{$product->id}}</p>
+                                        <p class="product-category">{{$product->category}}</p>
                                         <h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
                                         <h4 class="product-price">${{$product->price}}
                                             <del class="product-old-price">${{$product->price}}</del>
@@ -220,8 +220,14 @@
                                         <div class="product-rating">
                                         </div>
                                         <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                    class="tooltipp">add to wishlist</span></button>
+
+                                            <form action="{{route('add_to_wishlist')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{$product->id}}}">
+                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
+                                                            class="tooltipp">add to wishlist</span></button>
+                                            </form>
+
                                             <button class="add-to-compare"><i class="fa fa-exchange"></i><span
                                                     class="tooltipp">add to compare</span></button>
                                             <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
@@ -231,8 +237,10 @@
                                     <div class="add-to-cart">
                                         <form action="{{route('add_to_cart')}}" method="post">
                                             @csrf
-                                            <input type="hidden" name="product_id" value="{{$product->id}}}">
-                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                            <input  type="hidden" name="product_id" value="{{$product->id}}}">
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to
+                                                cart
+                                            </button>
                                         </form>
 
                                     </div>
