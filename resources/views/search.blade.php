@@ -203,7 +203,7 @@
                                     <div class="add-to-cart">
                                         <form action="{{route('add_to_cart')}}" method="post">
                                             @csrf
-                                            <input type="hidden" name="product_id" value="{{$product->id}}}">
+                                            <input type="hidden" name="product_id" value="{{$product->id}}">
                                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
                                         </form>
 

@@ -39,5 +39,5 @@ class WishListController extends Controller
         $products = Product::query()->whereIn('id',$ids)->get();
 
         return view('wishlist',compact('products','categories','show','wishlistCount'));
-    }
-}
+    }}
+

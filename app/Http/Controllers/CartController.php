@@ -15,6 +15,7 @@ class CartController extends Controller
         $id = $request->input('product_id');
         $cart[$id] = ($cart[$id] ?? 0)+1;
         Session::put('cart',$cart);
+
         return back();
     }
 
@@ -30,6 +31,7 @@ class CartController extends Controller
         $wishCount = Session::all();
         if(isset($wishCount['wishlist'])){
             $wishlistCount = count($wishCount['wishlist']);
+
         }else{
             $wishlistCount = 0;
         }
@@ -44,20 +46,21 @@ class CartController extends Controller
 
 
 
-
     public function destroy($id)
     {
         $product = collect(Session::all());
 
-        $delete = $product['cart'];
-        $product->forget($delete['14}']);
+        $deleteProduct = $product['cart'];
+        unset($deleteProduct[$id]);
 
-//        dd(Session::all());
-        $product->forget($id);
 
-        return response()
-            ->redirectToRoute('cart');
+
+        dd($deleteProduct);
+
+return back();
+
+//        return response()
+//            ->redirectToRoute('cart');
     }
-
 
 }

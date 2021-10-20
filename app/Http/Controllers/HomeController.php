@@ -19,34 +19,42 @@ class HomeController
 
 
         $cartCount = Session::all();
-        if(isset($cartCount['cart'])){
+        if (isset($cartCount['cart'])) {
             $show = count($cartCount['cart']);
-        }else{
+        } else {
             $show = 0;
         }
 
         $wishCount = Session::all();
-        if(isset($wishCount['wishlist'])){
+        if (isset($wishCount['wishlist'])) {
             $wishlistCount = count($wishCount['wishlist']);
-        }else{
+            dd($wishCount);
+        } else {
             $wishlistCount = 0;
         }
 
-        $showProductList = Session::all();
-        if(isset($showProductList['cart'])){
-            $productList = $showProductList['cart'];
-            dd($productList);
-        }else{
-            $productList = 0;
-        }
+//        $showProductList = Session::all();
+//        if (isset($showProductList['cart'])) {
+//            $productList = $showProductList['cart'];
+//        } else {
+//            $productList = 0;
+//        }
+//        $id = [];
+//        foreach ($showProductList['cart'] as $key => $value) {
+//            $id[] = $key;
+//
+//        }
+//        foreach ($id as $value) {
+//            $productToCart = Product::find($value.'}');
+//        }
+////        dd($productToCart);
 
+        $categories = Category::all();
         $products = Product::query()
             ->limit(7)
             ->inRandomOrder()
             ->get();
-        $categories = Category::all();
-        return view('home.main', compact('categories', 'products', 'show','wishlistCount','productList'));
-
+        return view('home.main', compact('categories', 'products', 'show', 'wishlistCount'));
 
     }
 
@@ -61,7 +69,21 @@ class HomeController
         if ($products->isEmpty()) {
             Session::flash('success', 'Product not found!');
         }
-        return view('search', compact('products', 'categories'));
+
+        $cartCount = Session::all();
+        if (isset($cartCount['cart'])) {
+            $show = count($cartCount['cart']);
+        } else {
+            $show = 0;
+        }
+
+        $wishCount = Session::all();
+        if (isset($wishCount['wishlist'])) {
+            $wishlistCount = count($wishCount['wishlist']);
+        } else {
+            $wishlistCount = 0;
+        }
+        return view('search', compact('products', 'categories', 'show', 'wishlistCount'));
 
     }
 
