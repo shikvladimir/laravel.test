@@ -23,8 +23,6 @@ class CheckPassword
             abort(403);
         }
 
-
-
         return $next($request);
     }
 }

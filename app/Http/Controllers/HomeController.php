@@ -39,7 +39,7 @@ class HomeController
 //        } else {
 //            $productList = 0;
 //        }
-//        $id = [];
+//        $id = [];exit
 //        foreach ($showProductList['cart'] as $key => $value) {
 //            $id[] = $key;
 //
