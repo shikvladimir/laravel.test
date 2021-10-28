@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RandProductsController;
@@ -59,6 +60,7 @@ Route::post('/add_to_wishlist', [WishListController::class,'addToWishlist'] )
 
 Route::get('/wishlist', [WishListController::class,'showWishlist'] )
     ->name('wishlist');
+
 
 Route::prefix('adm')->name('admin.')
     ->middleware(CheckPassword::class)

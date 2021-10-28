@@ -18,20 +18,19 @@ class HomeController
         Auth::logout();
 
 
-        $cartCount = Session::all();
-        if (isset($cartCount['cart'])) {
-            $show = count($cartCount['cart']);
-        } else {
-            $show = 0;
-        }
+            $cartCount = Session::get('cart');
+            if (isset($cartCount)) {
+                $show = count($cartCount);
+            } else {
+                $show = 0;
+            }
 
-        $wishCount = Session::all();
-        if (isset($wishCount['wishlist'])) {
-            $wishlistCount = count($wishCount['wishlist']);
-            dd($wishCount);
-        } else {
-            $wishlistCount = 0;
-        }
+            $wishCount = Session::all();
+            if (isset($wishCount['wishlist'])) {
+                $wishlistCount = count($wishCount['wishlist']);
+            } else {
+                $wishlistCount = 0;
+            }
 
 //        $showProductList = Session::all();
 //        if (isset($showProductList['cart'])) {
@@ -54,7 +53,7 @@ class HomeController
             ->limit(7)
             ->inRandomOrder()
             ->get();
-        return view('home.main', compact('categories', 'products', 'show', 'wishlistCount'));
+        return view('home.main', compact('categories', 'products','show', 'wishlistCount'));
 
     }
 
@@ -70,9 +69,9 @@ class HomeController
             Session::flash('success', 'Product not found!');
         }
 
-        $cartCount = Session::all();
-        if (isset($cartCount['cart'])) {
-            $show = count($cartCount['cart']);
+        $cartCount = Session::get('cart');
+        if (isset($cartCount)) {
+            $show = count($cartCount);
         } else {
             $show = 0;
         }

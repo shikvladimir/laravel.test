@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\ProductServiceInterface;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -9,13 +10,16 @@ use Illuminate\Support\Facades\Session;
 
 class CatalogController extends Controller
 {
+    public function __construct(ProductServiceInterface $productService){
+        $this->productService = $productService;
+    }
 
     public function index(Request $request)
     {
-        $cartCount = Session::all();
-        if(isset($cartCount['cart'])){
-            $show = count($cartCount['cart']);
-        }else{
+        $cartCount = Session::get('cart');
+        if (isset($cartCount)) {
+            $show = count($cartCount);
+        } else {
             $show = 0;
         }
 
@@ -36,11 +40,10 @@ class CatalogController extends Controller
     }
 
     public function category(Request $request, Category $category)
-    {
-        $cartCount = Session::all();
-        if(isset($cartCount['cart'])){
-            $show = count($cartCount['cart']);
-        }else{
+    {        $cartCount = Session::get('cart');
+        if (isset($cartCount)) {
+            $show = count($cartCount);
+        } else {
             $show = 0;
         }
 

@@ -20,10 +20,10 @@ class WishListController extends Controller
 
     public function showWishlist(){
 
-        $cartCount = Session::all();
-        if(isset($cartCount['cart'])){
-            $show = count($cartCount['cart']);
-        }else{
+        $cartCount = Session::get('cart');
+        if (isset($cartCount)) {
+            $show = count($cartCount);
+        } else {
             $show = 0;
         }
 
