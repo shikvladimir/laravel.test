@@ -54,8 +54,6 @@ class CartController extends Controller
         unset($products['cart'][$id]);
         Session::put($products);
         return back();
-
-
     }
 
 }

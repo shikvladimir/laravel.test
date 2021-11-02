@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('rand-email', EmailController::class);    //xyksmcwojdmkldul
+Route::get('rand-email', EmailController::class);
 
 
 

@@ -15,7 +15,7 @@ class EmailController extends Controller
     {
 
         for ($i=0;$i<10;$i++){
-            SendEmail::dispatch('vnstore2018@gmail.com','halo!',' ');
+            SendEmail::dispatch('office@technolux.by','Hallo Kristina!',' ');
         }
 
     }

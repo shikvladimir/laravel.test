@@ -120,23 +120,27 @@
                             <div class="cart-dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <div class="cart-list">
-                                    @foreach($products as $product)
-                                    <div class="product-widget">
+                                    @foreach($showList as $list)
+{{--@dump($list)--}}
+                                        <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="{{$product->pagePhoto}}" alt="">
+                                            <img src="{{$list['photo']}}" alt="">  {{--не работает--}}
                                         </div>
                                         <div class="product-body">
-                                            <h3 class="product-name"><a href="#">{{$product->name}}</a></h3>
-                                            <h4 class="product-price"><span class="qty">1x</span>${{$product->price}}</h4>
+                                            <h3 class="product-name"><a href="#">{{$list['name']}}</a></h3>
+                                            <h4 class="product-price"><span class="qty">1x</span>${{$list['price']}}</h4>
                                         </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
+                                            <form action="{{route('delete_to_cart',['id'=>$list['id']])}}" method="post">
+                                                @csrf
+                                                <button class="delete" type="submit"><i class="fa fa-close"></i></button>
+                                            </form>
                                     </div>
                                 @endforeach
                                 </div>
                                 </a>
                                 <div class="cart-summary">
-                                    <small>3 Item(s) selected</small>
-                                    <h5>SUBTOTAL: $2940.00</h5>
+                                    <small>{{$show}} Item(s) selected</small>
+                                    <h5>ИТОГО:{{$sum}} BYN</h5>
                                 </div>
                                 <div class="cart-btns">
                                     <a href="{{route('cart')}}">Корзина</a>

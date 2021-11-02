@@ -223,14 +223,18 @@
 
                                             <form action="{{route('add_to_wishlist')}}" method="post">
                                                 @csrf
-                                                <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                            class="tooltipp">add to wishlist</span></button>
+{{--                                                <input type="hidden" name="product_id" value="{{$product->id}}" >--}}
+                                                <button class="add-to-wishlist" value="{{$product->id}}">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    <span class="tooltipp">add to wishlist</span></button>
                                             </form>
 
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                    class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
+                                            <button class="add-to-compare">
+                                                <i class="fa fa-exchange"></i>
+                                                <span class="tooltipp">add to compare</span>
+                                            </button>
+                                            <button class="quick-view"><i class="fa fa-eye"></i>
+                                                <span class="tooltipp">quick view</span>
                                             </button>
                                         </div>
                                     </div>

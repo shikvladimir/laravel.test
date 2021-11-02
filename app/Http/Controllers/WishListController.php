@@ -26,18 +26,21 @@ class WishListController extends Controller
         } else {
             $show = 0;
         }
+        Session::put($cartCount);
 
-        $wishCount = Session::all();
-        if(isset($wishCount['wishlist'])){
-            $wishlistCount = count($wishCount['wishlist']);
-        }else{
+        $wishCount = Session::get('cart');
+        if (isset($wishCount)) {
+            $wishlistCount = count($wishCount);
+
+        } else {
             $wishlistCount = 0;
         }
+        Session::put($wishCount);
         $categories = Category::all();
         $wishlist = collect(Session::get('wishlist',[]));
         $ids = $wishlist->keys();
         $products = Product::query()->whereIn('id',$ids)->get();
 
-        return view('wishlist',compact('products','categories','show','wishlistCount'));
+        return view('wishlist',compact('products','categories','show','wishlistCount','wishlistCount', 'show'));
     }}
 
