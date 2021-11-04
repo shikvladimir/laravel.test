@@ -38,5 +38,6 @@ class ViewServiceProvider extends ServiceProvider
             View::composer('*',ShowListComposer::class);
             View::composer('*',SumComposer::class);
 
+        view()->share('site_name', 654656 );
     }
 }

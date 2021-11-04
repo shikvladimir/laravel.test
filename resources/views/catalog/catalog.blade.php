@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+@dump($site_name)
     <!-- BREADCRUMB -->
     <div id="breadcrumb" class="section">
         <!-- container -->
@@ -223,7 +223,7 @@
 
                                             <form action="{{route('add_to_wishlist')}}" method="post">
                                                 @csrf
-{{--                                                <input type="hidden" name="product_id" value="{{$product->id}}" >--}}
+                                                <input type="hidden" name="product_id" value="{{$product->id}}" >
                                                 <button class="add-to-wishlist" value="{{$product->id}}">
                                                     <i class="fa fa-heart-o"></i>
                                                     <span class="tooltipp">add to wishlist</span></button>

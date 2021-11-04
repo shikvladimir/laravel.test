@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Services\CartService;
 use Darryldecode\Cart\Cart;
 use http\Env\Response;
 use Illuminate\Http\Request;
@@ -11,29 +12,34 @@ use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
+
+    /**
+     * @var CartService
+     */
+    private $cartService;
+
+    public function __construct(CartService $cartService)
+    {
+            $this->cartService = $cartService;
+    }
+
     public function addToCart(Request $request)
     {
-        $cart = Session::get('cart', []);
-        $id = $request->input('product_id');
-        $cart[$id] = ($cart[$id] ?? 0) + 1;
-        Session::put('cart', $cart);
+        $this->cartService->addToCart($request->input('product_id'));
         return back();
     }
 
+
+
     public function showCart()
     {
-        $cart = collect(Session::get('cart', []));
-        $ids = $cart->keys();
-        $products = Product::query()->whereIn('id', $ids)->get();
-
+        $products = $this->cartService->getProducts();
         return view('cart', compact('products'));
     }
 
     public function destroy($id)
     {
-        $products = Session::all();
-        unset($products['cart'][$id]);
-        Session::put($products);
+        $this->cartService->deleteFromCart($id);
         return back();
     }
 
