@@ -16,26 +16,8 @@ class LoginController extends Controller
 
     public function register()
     {
-        $cartCount = Session::get('cart');
-        if (isset($cartCount)) {
-            $show = count($cartCount);
-        } else {
-            $show = 0;
-        }
-        Session::put($cartCount);
-
-        $wishCount = Session::get('cart');
-        if (isset($wishCount)) {
-            $wishlistCount = count($wishCount);
-
-        } else {
-            $wishlistCount = 0;
-        }
-        Session::put($wishCount);
-
         $products = Product::all();
-        $categories = Category::all();
-        return view('auth.register', compact('categories','products','wishlistCount', 'show'));
+        return view('auth.register', compact('products'));
     }
 
     public function registration(UserRegistrationRequest $request)
@@ -50,45 +32,27 @@ class LoginController extends Controller
 
     public function login()
     {
-        $cartCount = Session::get('cart');
-        if (isset($cartCount)) {
-            $show = count($cartCount);
-        } else {
-            $show = 0;
-        }
-        Session::put($cartCount);
-
-        $wishCount = Session::get('cart');
-        if (isset($wishCount)) {
-            $wishlistCount = count($wishCount);
-
-        } else {
-            $wishlistCount = 0;
-        }
-        Session::put($wishCount);
-
         $products = Product::all();
-        $categories = Category::all();
-        return view('auth.login', compact('categories','products','wishlistCount', 'show'));
+        return view('auth.login', compact('products'));
     }
 
     public function checkLogin(Request $request)
     {
         Auth::attempt($request->only(['email', 'password']));
 //        return redirect()->route('main_page');
-return back();
+        return back();
     }
 
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'email' => 'required',
             'password' => 'required'
         ]);
 
         $items = User::create($request->all());
 
-        return back()->with('success','Product successfully added.');
+        return back()->with('success', 'Product successfully added.');
     }
 
 }

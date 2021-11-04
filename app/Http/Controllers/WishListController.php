@@ -20,27 +20,10 @@ class WishListController extends Controller
 
     public function showWishlist(){
 
-        $cartCount = Session::get('cart');
-        if (isset($cartCount)) {
-            $show = count($cartCount);
-        } else {
-            $show = 0;
-        }
-        Session::put($cartCount);
-
-        $wishCount = Session::get('cart');
-        if (isset($wishCount)) {
-            $wishlistCount = count($wishCount);
-
-        } else {
-            $wishlistCount = 0;
-        }
-        Session::put($wishCount);
-        $categories = Category::all();
         $wishlist = collect(Session::get('wishlist',[]));
         $ids = $wishlist->keys();
         $products = Product::query()->whereIn('id',$ids)->get();
 
-        return view('wishlist',compact('products','categories','show','wishlistCount','wishlistCount', 'show'));
+        return view('wishlist',compact('products'));
     }}
 

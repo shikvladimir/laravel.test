@@ -17,36 +17,17 @@ class CartController extends Controller
         $id = $request->input('product_id');
         $cart[$id] = ($cart[$id] ?? 0) + 1;
         Session::put('cart', $cart);
-
         return back();
     }
 
     public function showCart()
     {
-
-        $cartCount = Session::get('cart');
-        if (isset($cartCount)) {
-            $show = count($cartCount);
-        } else {
-            $show = 0;
-        }
-
-        $wishCount = Session::all();
-        if (isset($wishCount['wishlist'])) {
-            $wishlistCount = count($wishCount['wishlist']);
-
-        } else {
-            $wishlistCount = 0;
-        }
-        $categories = Category::all();
         $cart = collect(Session::get('cart', []));
         $ids = $cart->keys();
         $products = Product::query()->whereIn('id', $ids)->get();
 
-
-        return view('cart', compact('products', 'categories', 'show', 'wishlistCount'));
+        return view('cart', compact('products'));
     }
-
 
     public function destroy($id)
     {

@@ -163,7 +163,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
         App\Providers\CustomProvider::class,
-
         /*
          * Package Service Providers...
          */
@@ -173,10 +172,9 @@ return [
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\ViewServiceProvider::class,
     ],
 
     /*

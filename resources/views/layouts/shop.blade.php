@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -121,10 +122,9 @@
                                 <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <div class="cart-list">
                                     @foreach($showList as $list)
-{{--@dump($list)--}}
                                         <div class="product-widget">
                                         <div class="product-img">
-                                            <img src="{{$list['photo']}}" alt="">  {{--не работает--}}
+                                            <img src="./storage/{{$list['photo']}}" alt="">
                                         </div>
                                         <div class="product-body">
                                             <h3 class="product-name"><a href="#">{{$list['name']}}</a></h3>
